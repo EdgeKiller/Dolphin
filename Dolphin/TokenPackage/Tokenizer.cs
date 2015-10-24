@@ -51,7 +51,7 @@ namespace Dolphin.TokenPackage
 
                         if (indexC != -1)
                         {
-                            if ((c == '=' || c == '>' || c == '<' || c == '!') && nc == '=' )
+                            if ((c == '=' || c == '>' || c == '<' || c == '!') && nc == '=')
                             {
                                 tokens.Add(new Token(TokenType.COMPARISON_OP, c.ToString() + nc.ToString()));
                                 i++;
@@ -100,6 +100,9 @@ namespace Dolphin.TokenPackage
                                     break;
                                 case "func":
                                     localType = TokenType.FUNC;
+                                    break;
+                                case "void":
+                                    localType = TokenType.VOID;
                                     break;
                                 case "number":
                                     localType = TokenType.NUMBER;

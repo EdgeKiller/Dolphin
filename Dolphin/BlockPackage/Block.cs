@@ -8,6 +8,7 @@ namespace Dolphin.BlockPackage
         Block superBlock;
         List<Block> subBlocks;
         List<Variable> variables;
+        Method mainMethod;
 
         public Block(Block superBlock)
         {
@@ -54,6 +55,16 @@ namespace Dolphin.BlockPackage
                     return true;
             }
             return false;
+        }
+
+        public void SetMainMethod(Method mainMethod)
+        {
+            this.mainMethod = mainMethod;
+        }
+
+        public Method GetMainMethod()
+        {
+            return mainMethod;
         }
 
         public virtual void Execute()

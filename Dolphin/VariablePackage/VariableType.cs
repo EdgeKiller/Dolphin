@@ -2,6 +2,6 @@
 {
     public enum VariableType
     {
-        NUMBER = 0, STRING = 0
+        NUMBER, STRING
     }
 }

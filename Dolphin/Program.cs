@@ -9,7 +9,7 @@ namespace Dolphin
         {
             Console.Title = "Dolphin Testing";
 
-            Dolphin.Interpret(File.ReadAllText("file.do"), "firstClass");
+            Dolphin.Interpret(File.ReadAllText("file.do"));
 
             Console.Read();
 
