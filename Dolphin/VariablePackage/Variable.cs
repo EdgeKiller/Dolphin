@@ -6,7 +6,7 @@ namespace Dolphin.VariablePackage
     public class Variable : Value
     {
         Block block;
-            string name;
+        string name;
 
         public Variable(Block block, VariableType type, string name, object value) : base(type, value)
         {

@@ -1,4 +1,7 @@
-﻿namespace Dolphin.BlockPackage
+﻿using Dolphin.StatementPackage;
+using System;
+
+namespace Dolphin.BlockPackage
 {
     public class Class : Block
     {
@@ -16,6 +19,12 @@
 
         public override void Execute()
         {
+            foreach (Block b in GetSubBlocks())
+            {
+                if (b is AssignStatement || b is PrintStatement || b is VarDeclarationStatement)
+                    b.Execute();
+            }
+
             foreach (Block b in GetSubBlocks())
             {
                 if (b is Method)

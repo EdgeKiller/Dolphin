@@ -1,6 +1,7 @@
 ﻿using Dolphin.BlockPackage;
 using Dolphin.ParserPackage;
 using Dolphin.TokenPackage;
+using Dolphin.VariablePackage;
 using System;
 using System.Collections.Generic;
 
@@ -13,18 +14,18 @@ namespace Dolphin
         {
             List<Token> tokens = Tokenizer.Tokenize(content);
 
-            /*foreach(Token t in tokens)
-            {
-                Console.WriteLine(t);
-            }*/
-
             Parser parser = new Parser(tokens);
 
             Block result = parser.Parse();
 
-            result.GetMainMethod().Execute();
+            result.GetMainClass().Execute();
 
-            Console.WriteLine((result.GetSubBlocks()[0].GetSubBlocks()[0] as Method).GetVariable("var").GetVariableType());
+            //Console.WriteLine(result.GetMainClass().GetVariable("test").GetValue());
+            //Console.WriteLine(result.GetMainClass().GetSubBlocks()[1].GetVariable("test").GetValue());
+            //Console.WriteLine((result.GetSubBlocks()[0].GetSubBlocks()[0] as Method).GetVariable("test").GetVariableType());
+            //Console.WriteLine((result.GetSubBlocks()[0] as Class).GetVariable("test").GetVariableType());
+            //Console.WriteLine((result.GetSubBlocks()[0] as Class).GetVariable("test"));
+            //Console.WriteLine(result.GetMainClass().GetVariable("test").GetValue());
             //Console.WriteLine((result.GetSubBlocks()[0].GetSubBlocks()[0] as Method).GetName());
         }
 

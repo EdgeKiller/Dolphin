@@ -1,5 +1,6 @@
 ﻿using Dolphin.BlockPackage;
 using Dolphin.VariablePackage;
+using System;
 
 namespace Dolphin.StatementPackage
 {
@@ -18,6 +19,8 @@ namespace Dolphin.StatementPackage
 
         public override void Execute()
         {
+            if (superBlock.VariableExists(name))
+                throw new Exception("Variable already exists with this name");
             superBlock.AddVariable(new Variable(superBlock, type, name, null));
         }
     }

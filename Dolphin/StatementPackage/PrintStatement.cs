@@ -15,7 +15,7 @@ namespace Dolphin.StatementPackage
 
         public override void Execute()
         {
-            Console.Write(expression.Evaluate().ToString());
+            Console.WriteLine(expression.Evaluate().ToString());
         }
     }
 }

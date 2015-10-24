@@ -4,7 +4,7 @@ using System;
 
 namespace Dolphin.ExpressionPackage
 {
-    public class OperatorExpression
+    public class OperatorExpression : IExpression
     {
         IExpression left, right;
         string op;

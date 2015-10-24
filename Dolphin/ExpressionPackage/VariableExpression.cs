@@ -16,7 +16,9 @@ namespace Dolphin.ExpressionPackage
 
         public Value Evaluate()
         {
-            return block.GetVariable(name);
+            if (block.VariableExists(name))
+                return block.GetVariable(name);
+            return null;
         }
     }
 }

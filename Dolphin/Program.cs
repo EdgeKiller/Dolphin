@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace Dolphin
@@ -7,12 +8,26 @@ namespace Dolphin
     {
         static void Main(string[] args)
         {
-            Console.Title = "Dolphin Testing";
+            Console.Title = "Dolphin Interpreter";
 
-            Dolphin.Interpret(File.ReadAllText("file.do"));
+            Stopwatch sw = new Stopwatch();
+
+            if (args.Length < 1)
+                Console.WriteLine("You need to specify a file to execute");
+            else
+            {
+                if (File.Exists(args[0]))
+                {
+                    sw.Start();
+                    Dolphin.Interpret(File.ReadAllText(args[0]));
+                    sw.Stop();
+                    Console.WriteLine("Execution time : " + sw.ElapsedMilliseconds + " ms");
+                }
+                else
+                    Console.WriteLine("File not found : " + args[0]);
+            }
 
             Console.Read();
-
         }
     }
 }

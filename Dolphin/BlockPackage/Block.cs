@@ -1,4 +1,6 @@
-﻿using Dolphin.VariablePackage;
+﻿using Dolphin.StatementPackage;
+using Dolphin.VariablePackage;
+using System;
 using System.Collections.Generic;
 
 namespace Dolphin.BlockPackage
@@ -8,7 +10,7 @@ namespace Dolphin.BlockPackage
         Block superBlock;
         List<Block> subBlocks;
         List<Variable> variables;
-        Method mainMethod;
+        Class mainClass;
 
         public Block(Block superBlock)
         {
@@ -34,7 +36,7 @@ namespace Dolphin.BlockPackage
 
         public Variable GetVariable(string name)
         {
-            foreach(Variable v in variables)
+            foreach (Variable v in GetAllVariables())
             {
                 if (v.GetName().Equals(name))
                     return v;
@@ -47,9 +49,31 @@ namespace Dolphin.BlockPackage
             variables.Add(v);
         }
 
+        public List<Variable> GetAllVariables()
+        {
+            List<Variable> result = new List<Variable>();
+            Block b = this;
+            while (true)
+            {
+                foreach (Variable v in b.GetVariables())
+                {
+                    result.Add(v);
+                }
+                b = b.GetSuperBlock();
+                if (b == null)
+                    break;
+            }
+            return result;
+        }
+
+        public List<Variable> GetVariables()
+        {
+            return variables;
+        }
+
         public bool VariableExists(string name)
         {
-            foreach (Variable v in variables)
+            foreach (Variable v in GetAllVariables())
             {
                 if (v.GetName().Equals(name))
                     return true;
@@ -57,14 +81,14 @@ namespace Dolphin.BlockPackage
             return false;
         }
 
-        public void SetMainMethod(Method mainMethod)
+        public void SetMainClass(Class mainClass)
         {
-            this.mainMethod = mainMethod;
+            this.mainClass = mainClass;
         }
 
-        public Method GetMainMethod()
+        public Class GetMainClass()
         {
-            return mainMethod;
+            return mainClass;
         }
 
         public virtual void Execute()

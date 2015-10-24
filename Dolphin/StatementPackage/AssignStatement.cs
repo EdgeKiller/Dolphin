@@ -2,6 +2,7 @@
 using Dolphin.ExpressionPackage;
 using Dolphin.ValuePackage;
 using Dolphin.VariablePackage;
+using System;
 
 namespace Dolphin.StatementPackage
 {
@@ -25,9 +26,10 @@ namespace Dolphin.StatementPackage
 
             while(localBlock != null)
             {
+
                 if (localBlock.VariableExists(name))
                     break;
-                localBlock = GetSuperBlock();
+                localBlock = localBlock.GetSuperBlock();
             }
 
             if (type == "=")

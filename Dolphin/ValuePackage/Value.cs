@@ -1,9 +1,10 @@
-﻿using Dolphin.VariablePackage;
+﻿using Dolphin.ExpressionPackage;
+using Dolphin.VariablePackage;
 using System;
 
 namespace Dolphin.ValuePackage
 {
-    public class Value
+    public class Value : IExpression
     {
         VariableType type;
         object value;
@@ -26,7 +27,7 @@ namespace Dolphin.ValuePackage
 
         public double ToNumber()
         {
-            return Convert.ToDouble(value);
+            return Convert.ToDouble(value.ToString());
         }
 
         public object GetValue()
@@ -37,6 +38,11 @@ namespace Dolphin.ValuePackage
         public void SetValue(object value)
         {
             this.value = value;
+        }
+
+        public Value Evaluate()
+        {
+            return this;
         }
     }
 }
